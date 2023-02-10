@@ -78,16 +78,17 @@ public class Cuenta {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Cuenta{");
-        sb.append("nombre=").append(nombre);
-        sb.append(", nCuenta=").append(nCuenta);
-        sb.append(", interes=").append(interes);
-        sb.append(", saldo=").append(saldo);
-        sb.append('}');
+        sb.append("\tCuenta:");
+        sb.append("\n---------------------------");
+        sb.append("\nNombre: ").append(nombre);
+        sb.append("\nNumero de Cuenta:").append(nCuenta);
+        sb.append("\nInteres: ").append(interes);
+        sb.append("\nSaldo:").append(saldo);
+        sb.append("\n---------------------------");
         return sb.toString();
     }
 
-    public boolean ingreso(int ingreso) {
+    public boolean ingreso(double ingreso) {
         boolean operacion = false;
         if (ingreso > 0) {
             this.saldo += ingreso;
@@ -98,11 +99,11 @@ public class Cuenta {
         return operacion;
     }
 
-    public boolean reintegro(int reintegro) {
+    public boolean reintegro(double reintegro) {
         boolean operacion = false;
         if (this.saldo >= 0) {
             if (reintegro > 0) {
-                this.saldo += reintegro;
+                this.saldo -= reintegro;
                 operacion = true;
             } else {
                 operacion = false;
@@ -112,4 +113,14 @@ public class Cuenta {
         return operacion;
     }
 
+    public boolean transferencia(Cuenta cuentaDestino, double importe) {
+        
+        if (this.reintegro(importe)) {
+            cuentaDestino.ingreso(importe);
+            return true;
+        }
+        //cuentaDestino.saldo += importe;
+        //this.saldo -= importe;
+        return false;
+    }
 }
