@@ -81,7 +81,7 @@ public class Cuenta {
         return this.contraseña;
     }
 
-    private boolean modificarContraseña(int contra) {
+    public boolean modificarContraseña(int contra) {
         if (validarContraseña(contra)) {
             this.contraseña = (int) (Math.random() * 9999 + 1000);
             return true;

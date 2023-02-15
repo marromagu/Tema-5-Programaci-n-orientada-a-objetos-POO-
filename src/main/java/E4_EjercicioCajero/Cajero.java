@@ -29,16 +29,22 @@ public class Cajero {
                     consultarModificarPersonales(teclado, cliente);
                     break;
                 case 2:
-                    //  ingresarNomina(teclado);
+                    System.out.println(cliente.cuenta.getSaldo());
+                    cliente.ingresarNómina();
+                    System.out.println(cliente.cuenta.getSaldo());
                     break;
                 case 3:
-                    //  consultarDB(teclado);
+                    System.out.println(cliente.mostrarDatos());
                     break;
                 case 4:
-                    //  SacarDinero(teclado);
+                    System.out.println("Cuanto dinero desa sacar?");
+                    int dinero = teclado.nextInt();
+                    System.out.println(cliente.sacarDinero(dinero));
                     break;
                 case 5:
-                    //  ModificarContraseña(teclado);
+                    System.out.println("Escriba la nueva contraseña:");
+                    int contraseña = teclado.nextInt();
+                    cliente.cuenta.modificarContraseña(contraseña);
                     break;
                 default://Nada que hacer
             }
@@ -69,17 +75,23 @@ public class Cajero {
     }
 
     public static void consultarModificarPersonales(Scanner t, Cliente cli) {
-        cli.mostrarDatos();
+        System.out.println(cli.mostrarDatos());
         System.out.println("Desea modificar los datos S/N");
         String respuesta = t.nextLine();
-        if (respuesta == "S") {
-            System.out.println("Nuevo DNI: ");
-            cli.setDNI(t.nextLine());
-            System.out.println("Nuevo Sueldo: ");
-            cli.setSalario(t.nextInt());
-        }
-    }
-    public static void ingresarNomina(Cliente cli){
-       // cli.cuenta.setSaldo() += cli.setSalario();
+        switch (respuesta) {
+            case "S":
+                System.out.println("Nuevo DNI");
+                cli.setDNI(t.nextLine());
+                System.out.println("Nuevo salario");
+                double salario = t.nextDouble();
+                cli.setSalario(salario);
+                System.out.println(cli.mostrarDatos());
+                System.out.println(cli.getSalario());
+                break;
+            case "N":
+                System.out.println("OK");
+                break;
+            default://Nada que hacer
+            }
     }
 }

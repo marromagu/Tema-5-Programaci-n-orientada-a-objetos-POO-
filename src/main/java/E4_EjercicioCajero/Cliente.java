@@ -44,32 +44,34 @@ public class Cliente {
     }
 
     public void setSalario(double salario) {
-        if (this.salario > 0) {
+        if (salario > 0) {
             this.salario = salario;
         }
     }
+
     public String mostrarDatos() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Cliente{");
+        sb.append("Cliente ");
         sb.append("DNI= ").append(DNI);
         sb.append(", saldo= ").append(saldo);
-        sb.append('}');
         return sb.toString();
     }
-    public double ingresarNómina(){
-        this.saldo += this.salario;
+
+    public double ingresarNómina() {
+        double saldoC = cuenta.getSaldo();
+        saldoC += this.salario;
+        cuenta.setSaldo(salario);
         return this.saldo;
     }
-    public double sacarDinero(int contra){
+
+    public double sacarDinero(int contra) {
         Scanner t = new Scanner(System.in);
-        if(cuenta.validarContraseña(contra)){
+        if (cuenta.validarContraseña(contra)) {
             System.out.println("Cunato dinero desa sacar");
             int dinero = Integer.parseInt(t.nextLine());
-            saldo-=dinero;
+            saldo -= dinero;
         }
         return this.saldo;
     }
-    
-    
 
 }
