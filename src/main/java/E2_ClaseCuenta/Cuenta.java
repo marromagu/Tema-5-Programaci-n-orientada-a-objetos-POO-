@@ -27,10 +27,13 @@ public class Cuenta {
 
     public Cuenta() {
         //Constructor con parametros
+        this("", "", 0.0, 0.0);
+        /*
         this.interes = 0;
         this.nCuenta = "";
         this.nombre = "";
         this.saldo = 0;
+         */
     }
 
     public Cuenta(Cuenta cuentaCopia) {
@@ -114,7 +117,7 @@ public class Cuenta {
     }
 
     public boolean transferencia(Cuenta cuentaDestino, double importe) {
-        
+
         if (this.reintegro(importe)) {
             cuentaDestino.ingreso(importe);
             return true;

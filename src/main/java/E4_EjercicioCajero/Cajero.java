@@ -29,22 +29,29 @@ public class Cajero {
                     consultarModificarPersonales(teclado, cliente);
                     break;
                 case 2:
-                    System.out.println(cliente.cuenta.getSaldo());
+                    System.out.println("Saldo: " + cliente.cuenta.getSaldo());
                     cliente.ingresarNómina();
-                    System.out.println(cliente.cuenta.getSaldo());
+                    System.out.println("Nuevo saldo: " + cliente.cuenta.getSaldo());
                     break;
                 case 3:
-                    System.out.println(cliente.mostrarDatos());
+                    System.out.println("Contraseña:");
+                    int datosC = teclado.nextInt();
+                    if (cliente.cuenta.validarContraseña(datosC)) {
+                        System.out.println(cliente.mostrarDatos());
+                    }else{
+                        System.out.println("Contraseña erronea");
+                    }
                     break;
                 case 4:
-                    System.out.println("Cuanto dinero desa sacar?");
+                    System.out.println("Contraseña:");
                     int dinero = teclado.nextInt();
                     System.out.println(cliente.sacarDinero(dinero));
                     break;
                 case 5:
-                    System.out.println("Escriba la nueva contraseña:");
+                    System.out.println("Contraseña:");
                     int contraseña = teclado.nextInt();
                     cliente.cuenta.modificarContraseña(contraseña);
+                    System.out.println("Su nueva contraseña es: " + cliente.cuenta.getContraseña());
                     break;
                 default://Nada que hacer
             }
@@ -86,7 +93,7 @@ public class Cajero {
                 double salario = t.nextDouble();
                 cli.setSalario(salario);
                 System.out.println(cli.mostrarDatos());
-                System.out.println(cli.getSalario());
+                System.out.println("Salario: " + cli.getSalario());
                 break;
             case "N":
                 System.out.println("OK");

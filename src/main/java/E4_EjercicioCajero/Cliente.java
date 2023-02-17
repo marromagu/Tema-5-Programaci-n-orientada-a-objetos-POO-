@@ -16,7 +16,7 @@ public class Cliente {
     private double salario;
 
     Cuenta cuenta = new Cuenta();
-    private double saldo = cuenta.getSaldo();
+    //Cuenta cuenta;
 
     public Cliente(String DNI, double salario) {
         this.DNI = DNI;
@@ -24,10 +24,12 @@ public class Cliente {
     }
 
     public Cliente(String DNI, double salario, double saldo) {
-        int dni = Integer.parseInt(DNI);
+        this.DNI = DNI;
+        this.salario = salario;
         cuenta.setCuenta(DNI);
-        cuenta.setContraseña(dni);
-
+        cuenta.setContraseña(Integer.parseInt(DNI));
+        cuenta.setSaldo(saldo);
+        //this.cuenta = new Cuenta(DNI, saldo, Integer.parseInt(DNI));
     }
 
     public String getDNI() {
@@ -35,8 +37,12 @@ public class Cliente {
     }
 
     public void setDNI(String DNI) {
-        int dni = Integer.parseInt(DNI);
-        this.DNI = DNI;
+        try {
+            Integer.parseInt(DNI);
+            this.DNI = DNI;
+        } catch (ExceptionInInitializerError e) {
+            System.out.println("Escribe solo numeros para el DNI");
+        }
     }
 
     public double getSalario() {
@@ -53,7 +59,7 @@ public class Cliente {
         StringBuilder sb = new StringBuilder();
         sb.append("Cliente ");
         sb.append("DNI= ").append(DNI);
-        sb.append(", saldo= ").append(saldo);
+        sb.append(", saldo= ").append(cuenta.getSaldo());
         return sb.toString();
     }
 
@@ -61,7 +67,7 @@ public class Cliente {
         double saldoC = cuenta.getSaldo();
         saldoC += this.salario;
         cuenta.setSaldo(salario);
-        return this.saldo;
+        return cuenta.getSaldo();
     }
 
     public double sacarDinero(int contra) {
@@ -69,9 +75,10 @@ public class Cliente {
         if (cuenta.validarContraseña(contra)) {
             System.out.println("Cunato dinero desa sacar");
             int dinero = Integer.parseInt(t.nextLine());
-            saldo -= dinero;
+            dinero *= -1;
+            cuenta.setSaldo(dinero);
         }
-        return this.saldo;
+        return cuenta.getSaldo();
     }
 
 }

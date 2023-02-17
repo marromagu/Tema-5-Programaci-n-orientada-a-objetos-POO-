@@ -29,11 +29,15 @@ public class CuentaMain {
         cuenta1.setInteres(leer.nextDouble());
         System.out.println("Saldo:");
         cuenta1.setSaldo(leer.nextDouble());
+        
         System.out.println(cuenta1.toString());
+        //System.out.println(cuenta1);
         System.out.println(cuenta2.toString());
+        
         Cuenta cuenta3 = new Cuenta(cuenta1);
         System.out.println(cuenta3.toString());
         System.out.println("");
+        
         cuenta3.transferencia(cuenta2, 10);
         System.out.println("Saldo: "+ cuenta3.getSaldo());
         System.out.println("Saldo: "+cuenta2.getSaldo());
