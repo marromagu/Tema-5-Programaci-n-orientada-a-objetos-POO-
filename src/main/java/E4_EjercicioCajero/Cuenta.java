@@ -77,13 +77,12 @@ public class Cuenta {
     }
 
     private int generarContraseña() {
-        this.contraseña = (int) (Math.random() * 9999 + 1000);
-        return this.contraseña;
+         return (int) (Math.random() * 8999 + 1000);
     }
 
     public boolean modificarContraseña(int contra) {
         if (validarContraseña(contra)) {
-            this.contraseña = (int) (Math.random() * 9999 + 1000);
+            this.contraseña = (int) (Math.random() * 8999 + 1000);
             return true;
         } else {
             System.out.println("error");
