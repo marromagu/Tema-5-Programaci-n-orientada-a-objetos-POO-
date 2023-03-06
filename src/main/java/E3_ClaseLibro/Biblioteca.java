@@ -20,24 +20,30 @@ public class Biblioteca {
         Scanner t = new Scanner(System.in);
         Libro libro1 = new Libro("El quijote", "Cervantes", 1, 0);
         Libro libro2 = new Libro();
+
         System.out.println("Tirtulo del libro:");
         libro2.setTitulo(t.nextLine());
+
         System.out.println("Autor del libro:");
         libro2.setAutor(t.nextLine());
+
         System.out.println("Ejemplares del libro:");
         libro2.setnEjemplares(t.nextInt());
+
         System.out.println("Ejemplares prestados del libro");
         libro2.setnPrestados(t.nextInt());
+
         System.out.println(libro1.toString());
         libro1.prestamos();
         libro1.devolucion();
         libro1.prestamos();
+
         if (!libro1.prestamos()) {
             System.out.println("|||||||||||||||||||||||||||||||||||");
             System.out.println("No quedan ejemplares del libro…");
             System.out.println("|||||||||||||||||||||||||||||||||||");
-
         }
+        
         System.out.println(libro1.toString());
         System.out.println(libro2.toString());
 
