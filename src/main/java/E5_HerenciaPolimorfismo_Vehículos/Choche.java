@@ -10,11 +10,13 @@ package E5_HerenciaPolimorfismo_Vehículos;
  */
 /*Clase Coche: tiene como atributo propio numPlazas. Tiene el constructor con parámetros y el getter para su atributo.
 El método trucarVehiculo se implementa multiplicando por 2 la potencia del coche.*/
-public class Choche {
+public class Choche extends Vehiculo{
     private int numPlazas;
 
-    public Choche(int numPlazas) {
+    public Choche(int numPlazas, float potencia, String matricula) {
+        super(potencia,matricula);
         this.numPlazas = numPlazas;
+        
     }
 
     public int getNumPlazas() {
@@ -24,7 +26,9 @@ public class Choche {
     public void setNumPlazas(int numPlazas) {
         this.numPlazas = numPlazas;
     }
-    
-    
-    
+
+    @Override
+    public void trucarVehiculo() {
+          this.setPotencia(this.getPotencia()*2);
+    }
 }
