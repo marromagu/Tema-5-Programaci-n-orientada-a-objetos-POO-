@@ -24,6 +24,7 @@ public class Gerente extends Empleados {
         System.out.println("--------------------------------------------");
         System.out.println("Gerente");
         System.out.println("--------------------------------------------");
+        System.out.println("Los Extras son :" + extras());
         return super.datosEmpleados(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
 

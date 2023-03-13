@@ -19,7 +19,7 @@ public class GestionarEmpresa {
         // TODO code application logic here
         Empresa empresa = new Empresa("Mario S.A", "ABC123", 500);
         Scanner teclado = new Scanner(System.in);
-
+        String respuesta;
         int op;
         do {
             op = menu(teclado);
@@ -28,8 +28,8 @@ public class GestionarEmpresa {
                     System.out.println(empresa.getNombreEmpresa());
                     System.out.println(empresa.getCif());
                     System.out.println(empresa.getCuentaEmpresa().getSaldo());
-                    System.out.println("Desea cambiar los datos del Nombre y el CIF");
-                    String respuesta = teclado.nextLine();
+                    System.out.println("Desea cambiar los datos del Nombre y el CIF ( s / n )");
+                    respuesta = teclado.nextLine();
                     switch (respuesta) {
                         case "s":
                             System.out.println("Nuevo nombre");
@@ -45,10 +45,37 @@ public class GestionarEmpresa {
                     }
                     break;
                 case 2:
-                    //Empleados empleado = new Empleados();
-                   //empresa.contratar();
+                    System.out.println("¿Que empleado desea contratar?(Programador[p] / Gerente[g])");
+                    respuesta = teclado.nextLine();
+                    System.out.println("Nombe del Empleado");
+                    String nombe = teclado.nextLine();
+                    System.out.println("DNI del Empleado");
+                    String dni = teclado.nextLine();
+                    System.out.println("Su Salario");
+                    double salario = teclado.nextDouble();
+
+                    switch (respuesta) {
+                        case "p":
+                            System.out.println("Horas extras del Programador");
+                            int horasExtras = teclado.nextInt();
+                            Programador empleadoP = new Programador(horasExtras, nombe, dni, salario);
+                            empresa.contratar(empleadoP);
+                            break;
+                        case "g":
+                            System.out.println("Comisiones del Gerente");
+                            double comisiones = teclado.nextDouble();
+                            System.out.println("Proyectos del Gerente");
+                            int proyecto = teclado.nextInt();
+                            Gerente empleadoG = new Gerente(comisiones, proyecto, nombe, dni, salario);
+                            empresa.contratar(empleadoG);
+                            break;
+                    }
                     break;
                 case 3:
+                    System.out.println("Dime el numero del Empleado que deseas ver");
+                    int posicion = teclado.nextInt();
+                    Empleados miEmpleado = empresa.devolverEmpleado(posicion);
+                    miEmpleado.datosEmpleados();
                     break;
                 case 4:
                     break;
