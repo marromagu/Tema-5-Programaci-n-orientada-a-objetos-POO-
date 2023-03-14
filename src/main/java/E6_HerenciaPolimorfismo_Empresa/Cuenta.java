@@ -83,7 +83,7 @@ public class Cuenta {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("\tCuenta:");
+        sb.append("\n\n\tCuenta:");
         sb.append("\n---------------------------");
         sb.append("\nNombre: ").append(nombre);
         sb.append("\nNumero de Cuenta:").append(nCuenta);

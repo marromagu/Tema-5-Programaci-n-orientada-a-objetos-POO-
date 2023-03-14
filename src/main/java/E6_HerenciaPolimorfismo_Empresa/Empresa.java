@@ -87,21 +87,22 @@ public class Empresa {
             Empleados miEmpleado = devolverEmpleado(posicion);
             nomina = miEmpleado.getSalario() + miEmpleado.extras();
 
-            this.cuentaEmpresa.transferencia(miEmpleado.getCuentaEmpleado(), nomina);
-            return true;
+            return this.cuentaEmpresa.transferencia(miEmpleado.getCuentaEmpleado(), nomina);
         }
 
         return false;
     }
-    protected void listarEmpleados(){
+
+    protected void listarEmpleados() {
         for (int i = 0; i < numeroEmpleados; i++) {
             empleados[i].datosEmpleados();
         }
     }
-    protected void datosEmpresa(){
-        System.out.println("Nombre: "+nombreEmpresa);
-        System.out.println("CIF: "+cif);
-        System.out.println("Saldo: "+cuentaEmpresa.getSaldo());
+
+    protected void datosEmpresa() {
+        System.out.println("Nombre: " + nombreEmpresa);
+        System.out.println("CIF: " + cif);
+        System.out.println("Saldo: " + cuentaEmpresa.getSaldo());
     }
 
 }

@@ -4,6 +4,7 @@
  */
 package E6_HerenciaPolimorfismo_Empresa;
 
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -17,7 +18,7 @@ public class GestionarEmpresa {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Empresa empresa = new Empresa("Mario S.A", "ABC123", 500);
+        Empresa empresa = new Empresa("Mario S.A", "ABC123", 999999);
         Scanner teclado = new Scanner(System.in);
         String respuesta;
         int op;
@@ -45,43 +46,62 @@ public class GestionarEmpresa {
                     }
                     break;
                 case 2:
-                    System.out.println("¿Que empleado desea contratar?(Programador[p] / Gerente[g])");
+                    System.out.println("¿Generar Empleados automaticamente?");
                     respuesta = teclado.nextLine();
-                    System.out.println("Nombe del Empleado");
-                    String nombe = teclado.nextLine();
-                    System.out.println("DNI del Empleado");
-                    String dni = teclado.nextLine();
-                    System.out.println("Su Salario");
-                    double salario = teclado.nextDouble();
+                    if (respuesta == "s") {
+                        //randomEmpleados();
+                    } else {
+                        System.out.println("¿Que empleado desea contratar?(Programador[p] / Gerente[g])");
+                        respuesta = teclado.nextLine();
+                        System.out.println("Nombe del Empleado");
+                        String nombe = teclado.nextLine();
+                        System.out.println("DNI del Empleado");
+                        String dni = teclado.nextLine();
+                        System.out.println("Su Salario");
+                        double salario = teclado.nextDouble();
 
-                    switch (respuesta) {
-                        case "p":
-                            System.out.println("Horas extras del Programador");
-                            int horasExtras = teclado.nextInt();
-                            Programador empleadoP = new Programador(horasExtras, nombe, dni, salario);
-                            empresa.contratar(empleadoP);
-                            break;
-                        case "g":
-                            System.out.println("Comisiones del Gerente");
-                            double comisiones = teclado.nextDouble();
-                            System.out.println("Proyectos del Gerente");
-                            int proyecto = teclado.nextInt();
-                            Gerente empleadoG = new Gerente(comisiones, proyecto, nombe, dni, salario);
-                            empresa.contratar(empleadoG);
-                            break;
+                        switch (respuesta) {
+                            case "p":
+                                System.out.println("Horas extras del Programador");
+                                int horasExtras = teclado.nextInt();
+                                Programador empleadoP = new Programador(horasExtras, nombe, dni, salario);
+                                empresa.contratar(empleadoP);
+                                break;
+                            case "g":
+                                System.out.println("Comisiones del Gerente");
+                                double comisiones = teclado.nextDouble();
+                                System.out.println("Proyectos del Gerente");
+                                int proyecto = teclado.nextInt();
+                                Gerente empleadoG = new Gerente(comisiones, proyecto, nombe, dni, salario);
+                                empresa.contratar(empleadoG);
+                                break;
+                        }
                     }
                     break;
                 case 3:
-                    System.out.println("Dime el numero del Empleado que deseas ver");
+                    System.out.println("Dime el numero del Empleado que deseas ver( '0' para el primero.)");
                     int posicion = teclado.nextInt();
                     Empleados miEmpleado = empresa.devolverEmpleado(posicion);
                     miEmpleado.datosEmpleados();
                     break;
                 case 4:
+                    empresa.listarEmpleados();
                     break;
                 case 5:
+                    for (int i = 0; i < empresa.getNumeroEmpleados(); i++) {
+                        empresa.pagarNomina(i);
+                        if (empresa.pagarNomina(i)) {
+                            System.out.println("Pago realizado...");
+
+                        }
+
+                    }
+
                     break;
                 case 6:
+                    System.out.println("¿Cuanto dinero desea ingresar en la cuenta de la empresa?");
+                    double dinero = teclado.nextDouble();
+                    empresa.getCuentaEmpresa().ingreso(dinero);
                     break;
 
                 default://Nada que hacer
@@ -111,6 +131,29 @@ public class GestionarEmpresa {
         int op = Integer.parseInt(a.nextLine());
         System.out.println();
         return op;
+    }
+
+    public void randomEmpleados(Empresa empresa) {
+        String nombres[] = {"Mario", "Laura", "Jose", "Pablo", "Paula"};
+        for (int i = 0; i < 20; i++) {
+            int r = (int) (Math.random() * 5);
+            String nombe = nombres[r];
+            String dni = "000" + (i + 1) + nombres[r].charAt(1);
+            double salario = (double) (Math.random() * 2000);
+            if (r % 2 != 0) {
+                int horasExtras = (int) (Math.random() * 10);
+                Programador empleadoP = new Programador(horasExtras, nombe, dni, salario);
+                empresa.contratar(empleadoP);
+                System.out.println("Empleado Creado." + (i + 1));
+            } else {
+                double comisiones = (double) (Math.random() * 1000);
+                int proyecto = (int) (Math.random() * 10);
+                Gerente empleadoG = new Gerente(comisiones, proyecto, nombe, dni, salario);
+                empresa.contratar(empleadoG);
+                System.out.println("Empleado Creado." + (i + 1));
+            }
+
+        }
     }
 
 }

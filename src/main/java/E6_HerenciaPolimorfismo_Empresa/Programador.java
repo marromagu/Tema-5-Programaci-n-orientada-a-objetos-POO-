@@ -24,14 +24,11 @@ public class Programador extends Empleados {
 
     }
 
-    @Override
-    public String datosEmpleados() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("--------------------------------------------");
-        sb.append("Programador");
-        sb.append("--------------------------------------------");
-        sb.append("Los Extras son :").append(extras());
-        return super.datosEmpleados()+ sb.toString(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    public void datosEmpleados() {
+        System.out.println("--------------------------------------------");
+        System.out.println("Programador");
+        System.out.println("--------------------------------------------");
+        super.datosEmpleados(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
 
     public int getHorasExtras() {

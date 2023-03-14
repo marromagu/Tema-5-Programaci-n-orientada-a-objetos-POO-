@@ -11,8 +11,9 @@ import Ejemplos_Empleado.*;
  * @author jmrivera
  */
 public abstract class Empleados {
+
     private String nombre;
-    private String  dni;
+    private String dni;
     private double salario;
     private Cuenta cuentaEmpleado;
 
@@ -20,7 +21,7 @@ public abstract class Empleados {
         this.nombre = nombre;
         this.dni = dni;
         this.salario = salario;
-        this.cuentaEmpleado = new Cuenta(nombre,dni,5,salario);
+        this.cuentaEmpleado = new Cuenta(nombre, dni, 5, salario);
     }
 
     public String getNombre() {
@@ -54,18 +55,20 @@ public abstract class Empleados {
     public void setCuentaEmpleado(Cuenta cuentaEmpleado) {
         this.cuentaEmpleado = cuentaEmpleado;
     }
+
     protected abstract double extras();
     //El método abstracto extras que devuelve un double y no recibe parámetros. Calculará los extras del salario del empleado.
 
-    public String datosEmpleados () {
+    public void datosEmpleados() {
         StringBuilder sb = new StringBuilder();
         sb.append("Nombre: ").append(nombre);
-        sb.append("DNI: ").append(dni);
-        sb.append("Salario: ").append(salario);
-        sb.append("Cuenta Empleado: ").append(cuentaEmpleado);
-        //sb.append("Los Extras son: ").append(extras);
+        sb.append(" DNI: ").append(dni);
+        sb.append(" Salario: ").append(salario);
+        sb.append(" Los Extras son: ").append(extras());
+        sb.append(" Cuenta Empleado: ").append(cuentaEmpleado);
+
         sb.append("--------------------------------------------");
-        return sb.toString();
+        System.out.println(sb.toString());
     }
-    
+
 }

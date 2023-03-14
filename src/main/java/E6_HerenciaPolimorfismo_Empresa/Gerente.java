@@ -19,13 +19,12 @@ public class Gerente extends Empleados {
         this.proyectos = proyectos;
     }
 
-    @Override
-    public String datosEmpleados() {
+    public void datosEmpleados() {
         System.out.println("--------------------------------------------");
         System.out.println("Gerente");
         System.out.println("--------------------------------------------");
-        System.out.println("Los Extras son :" + extras());
-        return super.datosEmpleados(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+
+        super.datosEmpleados(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
 
     @Override
