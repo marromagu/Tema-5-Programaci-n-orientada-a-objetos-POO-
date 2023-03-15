@@ -4,7 +4,6 @@
  */
 package E6_HerenciaPolimorfismo_Empresa;
 
-import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -25,27 +24,26 @@ public class GestionarEmpresa {
         do {
             op = menu(teclado);
             switch (op) {
-                case 1:
+                case 1 -> {
                     System.out.println(empresa.getNombreEmpresa());
                     System.out.println(empresa.getCif());
                     System.out.println(empresa.getCuentaEmpresa().getSaldo());
                     System.out.println("Desea cambiar los datos del Nombre y el CIF ( s / n )");
                     respuesta = teclado.nextLine();
                     switch (respuesta) {
-                        case "s":
+                        case "s" -> {
                             System.out.println("Nuevo nombre");
                             respuesta = teclado.nextLine();
                             empresa.setNombreEmpresa(respuesta);
                             System.out.println("Nueva CIF");
                             respuesta = teclado.nextLine();
                             empresa.setCif(respuesta);
-                            break;
-                        case "n":
+                        }
+                        case "n" ->
                             System.out.println("OK");
-                            break;
                     }
-                    break;
-                case 2:
+                }
+                case 2 -> {
                     if (empresa.getNumeroEmpleados() < empresa.getEmpleados().length) {
                         System.out.println("¿Generar Empleados automaticamente? ( s / n )");
                         respuesta = teclado.nextLine();
@@ -58,33 +56,36 @@ public class GestionarEmpresa {
                     } else {
                         System.out.println("-Numero Maximo de Empleados-");
                     }
-                    break;
-                case 3:
+                }
+                case 3 -> {
                     System.out.println("Dime el numero del Empleado que deseas ver( '0' para el primero.)");
                     int posicion = teclado.nextInt();
                     Empleados miEmpleado = empresa.devolverEmpleado(posicion);
-                    miEmpleado.datosEmpleados();
-                    break;
-                case 4:
+                    if (miEmpleado != null) {
+                        miEmpleado.datosEmpleados();
+                    }
+                }
+                case 4 ->
                     empresa.listarEmpleados();
-                    break;
-                case 5:
+                case 5 -> {
                     for (int i = 0; i < empresa.getNumeroEmpleados(); i++) {
                         empresa.pagarNomina(i);
                         if (empresa.pagarNomina(i)) {
                             System.out.println("Pago realizado...");
                         }
                     }
-                    break;
-                case 6:
+                }
+                case 6 -> {
                     System.out.println("¿Cuanto dinero desea ingresar en la cuenta de la empresa?");
                     double dinero = teclado.nextDouble();
                     empresa.getCuentaEmpresa().ingreso(dinero);
                     if (empresa.getCuentaEmpresa().ingreso(dinero)) {
                         System.out.println("Ingreso realizado...");
                     }
-                    break;
-                default://Nada que hacer
+                }
+                default -> //Nada que hacer
+                {
+                }
             }
             if (op != 0) {
                 System.out.println("\nPelse intro para continuar...");
@@ -152,15 +153,14 @@ public class GestionarEmpresa {
             double salario = teclado.nextDouble();
 
             switch (respuesta) {
-                case "p":
+                case "p" -> {
                     System.out.println("Horas extras del Programador");
                     int horasExtras = teclado.nextInt();
                     Programador empleadoP = new Programador(horasExtras, nombe, dni, salario);
                     empresa.contratar(empleadoP);
                     System.out.println("Empleado Creado.");
-
-                    break;
-                case "g":
+                }
+                case "g" -> {
                     System.out.println("Comisiones del Gerente");
                     double comisiones = teclado.nextDouble();
                     System.out.println("Proyectos del Gerente");
@@ -168,7 +168,7 @@ public class GestionarEmpresa {
                     Gerente empleadoG = new Gerente(comisiones, proyecto, nombe, dni, salario);
                     empresa.contratar(empleadoG);
                     System.out.println("Empleado Creado.");
-                    break;
+                }
             }
         }
     }
