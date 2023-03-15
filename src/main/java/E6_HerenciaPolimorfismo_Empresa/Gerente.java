@@ -20,8 +20,8 @@ public class Gerente extends Empleados {
     }
 
     public void datosEmpleados() {
-        System.out.println("--------------------------------------------");
-        System.out.println("Gerente");
+        System.out.println("\n\n--------------------------------------------");
+        System.out.println("\tGerente");
         System.out.println("--------------------------------------------");
 
         super.datosEmpleados(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody

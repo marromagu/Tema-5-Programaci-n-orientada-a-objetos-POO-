@@ -46,36 +46,17 @@ public class GestionarEmpresa {
                     }
                     break;
                 case 2:
-                    System.out.println("¿Generar Empleados automaticamente?");
-                    respuesta = teclado.nextLine();
-                    if (respuesta == "s") {
-                        //randomEmpleados();
-                    } else {
-                        System.out.println("¿Que empleado desea contratar?(Programador[p] / Gerente[g])");
+                    if (empresa.getNumeroEmpleados() < empresa.getEmpleados().length) {
+                        System.out.println("¿Generar Empleados automaticamente? ( s / n )");
                         respuesta = teclado.nextLine();
-                        System.out.println("Nombe del Empleado");
-                        String nombe = teclado.nextLine();
-                        System.out.println("DNI del Empleado");
-                        String dni = teclado.nextLine();
-                        System.out.println("Su Salario");
-                        double salario = teclado.nextDouble();
-
-                        switch (respuesta) {
-                            case "p":
-                                System.out.println("Horas extras del Programador");
-                                int horasExtras = teclado.nextInt();
-                                Programador empleadoP = new Programador(horasExtras, nombe, dni, salario);
-                                empresa.contratar(empleadoP);
-                                break;
-                            case "g":
-                                System.out.println("Comisiones del Gerente");
-                                double comisiones = teclado.nextDouble();
-                                System.out.println("Proyectos del Gerente");
-                                int proyecto = teclado.nextInt();
-                                Gerente empleadoG = new Gerente(comisiones, proyecto, nombe, dni, salario);
-                                empresa.contratar(empleadoG);
-                                break;
+                        if (respuesta.equals("s")) {
+                            randomEmpleados(empresa);
                         }
+                        if (respuesta.equals("n")) {
+                            pedirDatosEmpleado(empresa, teclado);
+                        }
+                    } else {
+                        System.out.println("-Numero Maximo de Empleados-");
                     }
                     break;
                 case 3:
@@ -92,18 +73,17 @@ public class GestionarEmpresa {
                         empresa.pagarNomina(i);
                         if (empresa.pagarNomina(i)) {
                             System.out.println("Pago realizado...");
-
                         }
-
                     }
-
                     break;
                 case 6:
                     System.out.println("¿Cuanto dinero desea ingresar en la cuenta de la empresa?");
                     double dinero = teclado.nextDouble();
                     empresa.getCuentaEmpresa().ingreso(dinero);
+                    if (empresa.getCuentaEmpresa().ingreso(dinero)) {
+                        System.out.println("Ingreso realizado...");
+                    }
                     break;
-
                 default://Nada que hacer
             }
             if (op != 0) {
@@ -113,11 +93,10 @@ public class GestionarEmpresa {
                 System.out.println("\nFin del programa.");
             }
         } while (op != 0);
-
     }
 
     public static int menu(Scanner a) {
-        System.out.println(" GESTION EMPRESA");
+        System.out.println("\n GESTION EMPRESA");
         System.out.println("---------------------");
         System.out.println();
         System.out.println("1. Ver/modificar los datos de la empresa.");
@@ -128,31 +107,69 @@ public class GestionarEmpresa {
         System.out.println("6. Ingresar en la cuenta de la empresa.");
         System.out.println();
         System.out.print("Introduzca opción: ");
-        int op = Integer.parseInt(a.nextLine());
-        System.out.println();
-        return op;
+        try {
+            int op = Integer.parseInt(a.nextLine());
+            System.out.println();
+            return op;
+        } catch (NumberFormatException e) {
+            System.out.println("Error 404");
+        }
+        return 0;
     }
 
-    public void randomEmpleados(Empresa empresa) {
-        String nombres[] = {"Mario", "Laura", "Jose", "Pablo", "Paula"};
-        for (int i = 0; i < 20; i++) {
-            int r = (int) (Math.random() * 5);
+    public static void randomEmpleados(Empresa empresa) {
+        String nombres[] = {"Mario", "Laura", "Jose", "Pablo", "Paula", "Fran", "Antonio", "Manuel", "Andrea", "Javi"};
+        for (int i = 0; i < empresa.getEmpleados().length; i++) {
+            int r = (int) (Math.random() * 10);
             String nombe = nombres[r];
-            String dni = "000" + (i + 1) + nombres[r].charAt(1);
+            String dni = "00" + (i + 10) + nombres[r].charAt(0);
             double salario = (double) (Math.random() * 2000);
-            if (r % 2 != 0) {
-                int horasExtras = (int) (Math.random() * 10);
-                Programador empleadoP = new Programador(horasExtras, nombe, dni, salario);
+            if (r % 2 == 0) {
+                int horasExtras = (int) (Math.random() * 100);
+                Programador empleadoP = new Programador(horasExtras, nombe, dni, Math.floor(salario));
                 empresa.contratar(empleadoP);
                 System.out.println("Empleado Creado." + (i + 1));
             } else {
                 double comisiones = (double) (Math.random() * 1000);
                 int proyecto = (int) (Math.random() * 10);
-                Gerente empleadoG = new Gerente(comisiones, proyecto, nombe, dni, salario);
+                Gerente empleadoG = new Gerente(Math.floor(comisiones), proyecto, nombe, dni, Math.floor(salario));
                 empresa.contratar(empleadoG);
                 System.out.println("Empleado Creado." + (i + 1));
             }
+        }
+    }
 
+    public static void pedirDatosEmpleado(Empresa empresa, Scanner teclado) {
+        String respuesta;
+        System.out.println("¿Que empleado desea contratar?(Programador[p] / Gerente[g])");
+        respuesta = teclado.nextLine();
+        if (respuesta.equals("p") || respuesta.equals("g")) {
+            System.out.println("Nombe del Empleado");
+            String nombe = teclado.nextLine();
+            System.out.println("DNI del Empleado");
+            String dni = teclado.nextLine();
+            System.out.println("Su Salario");
+            double salario = teclado.nextDouble();
+
+            switch (respuesta) {
+                case "p":
+                    System.out.println("Horas extras del Programador");
+                    int horasExtras = teclado.nextInt();
+                    Programador empleadoP = new Programador(horasExtras, nombe, dni, salario);
+                    empresa.contratar(empleadoP);
+                    System.out.println("Empleado Creado.");
+
+                    break;
+                case "g":
+                    System.out.println("Comisiones del Gerente");
+                    double comisiones = teclado.nextDouble();
+                    System.out.println("Proyectos del Gerente");
+                    int proyecto = teclado.nextInt();
+                    Gerente empleadoG = new Gerente(comisiones, proyecto, nombe, dni, salario);
+                    empresa.contratar(empleadoG);
+                    System.out.println("Empleado Creado.");
+                    break;
+            }
         }
     }
 

@@ -65,9 +65,9 @@ public class Empresa {
     }
 
     protected boolean contratar(Empleados empleado) {
-        if (numeroEmpleados < 20) {
-            this.empleados[numeroEmpleados] = empleado;
-            numeroEmpleados++;
+        if (numeroEmpleados < empleados.length) {
+            this.empleados[numeroEmpleados++] = empleado;
+            // numeroEmpleados++;
             return true;
         }
         return false;
@@ -95,7 +95,8 @@ public class Empresa {
 
     protected void listarEmpleados() {
         for (int i = 0; i < numeroEmpleados; i++) {
-            empleados[i].datosEmpleados();
+            devolverEmpleado(i).datosEmpleados();
+            //empleados[i].datosEmpleados();
         }
     }
 

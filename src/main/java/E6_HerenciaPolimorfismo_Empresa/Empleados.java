@@ -29,7 +29,9 @@ public abstract class Empleados {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        if (!nombre.equals("") ) {
+        this.nombre = nombre;            
+        }
     }
 
     public String getDni() {
@@ -64,10 +66,8 @@ public abstract class Empleados {
         sb.append("Nombre: ").append(nombre);
         sb.append(" DNI: ").append(dni);
         sb.append(" Salario: ").append(salario);
-        sb.append(" Los Extras son: ").append(extras());
-        sb.append(" Cuenta Empleado: ").append(cuentaEmpleado);
-
-        sb.append("--------------------------------------------");
+        sb.append("\nLos Extras son: ").append(extras());
+        sb.append(cuentaEmpleado);
         System.out.println(sb.toString());
     }
 

@@ -25,8 +25,8 @@ public class Programador extends Empleados {
     }
 
     public void datosEmpleados() {
-        System.out.println("--------------------------------------------");
-        System.out.println("Programador");
+        System.out.println("\n\n--------------------------------------------");
+        System.out.println("\tProgramador");
         System.out.println("--------------------------------------------");
         super.datosEmpleados(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
