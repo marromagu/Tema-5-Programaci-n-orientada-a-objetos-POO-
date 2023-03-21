@@ -48,7 +48,9 @@ public class Vivienda extends Inmueble {
     }
     
     public void verDatos(){
-        System.out.println("Vivienda");
+        System.out.println("------------");
+        System.out.println("| Vivienda |");
+        System.out.println("------------");
         super.verDatos();
     }
     public int getNumHabitaciones() {

@@ -124,11 +124,11 @@ public class Inmobiliaria {
         System.out.println("Tipo de Inmueble [A/L/V]");
         String r = t.nextLine();
         System.out.println("Superficie");
-        double superficie = t.nextDouble();
+        double superficie = Double.parseDouble(t.nextLine());
         System.out.println("Direccion");
         String direccion = t.nextLine();
         System.out.println("Precio");
-        double precio = t.nextDouble();
+        double precio = Double.parseDouble(t.nextLine());
 
         switch (r) {
             case "A" -> {
@@ -139,14 +139,14 @@ public class Inmobiliaria {
             }
             case "V" -> {
                 System.out.println("numHabitaciones");
-                int numHabitaciones = t.nextInt();
+                int numHabitaciones = Integer.parseInt(t.nextLine());
                 System.out.println("numBaños");
-                int numBaños = t.nextInt();
+                int numBaños = Integer.parseInt(t.nextLine());
                 System.out.println("plazasGaraje");
-                int plazasGaraje = t.nextInt();
+                int plazasGaraje = Integer.parseInt(t.nextLine());
                 System.out.println("planta");
-                int planta = t.nextInt();
-                System.out.println("ascensor");
+                int planta = Integer.parseInt(t.nextLine());
+                System.out.println("ascensor [s/n]");
                 boolean ascensor;
                 r = t.nextLine();
                 ascensor = switch (r) {
@@ -168,11 +168,21 @@ public class Inmobiliaria {
         }
         return null;
     }
-    public void verDatos(){
-        System.out.println(numeroInmuebles);
-        System.out.println(cuenta.getSaldo());
+
+    public void verDatos() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Inmobiliaria{");
+        sb.append("Nombre = ").append(nombre);
+        sb.append(", CIF = ").append(cif);
+        sb.append(", Direccion = ").append(direccion);
+        sb.append(", Propietario = ").append(propietario);
+        sb.append(", Cuenta = ").append(cuenta.getSaldo());
+        sb.append(", Numero Inmuebles = ").append(numeroInmuebles);
+        sb.append('}');
+        System.out.println(sb.toString());
     }
-    public void verDatosInmuebles(){
+
+    public void verDatosInmuebles() {
         for (int i = 0; i < numeroInmuebles; i++) {
             inmuebles[i].verDatos();
         }

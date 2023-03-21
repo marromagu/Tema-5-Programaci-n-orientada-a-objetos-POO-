@@ -30,8 +30,10 @@ public class Local extends Inmueble {
     }
 
 
-    public void varDatos() {
-        System.out.println("Local");
+    public void verDatos() {
+        System.out.println("---------");
+        System.out.println("| Local |");
+        System.out.println("---------");
         super.verDatos();
     }
 
