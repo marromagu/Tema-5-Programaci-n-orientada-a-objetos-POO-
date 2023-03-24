@@ -63,6 +63,20 @@ public class GestionarInmobiliaria {
                 case 6 -> {
                     miInmobiliaria.verDatosInmuebles();
                 }
+
+                case 7 -> {
+                    miInmobiliaria.ordena_burbuja();
+                    System.out.println("Ordenando...");
+                }
+                case 8 -> {
+                    miInmobiliaria.GenerarObjetos();
+                    System.out.println("Generando...");
+                }
+                case 9 ->{
+                    System.out.println("Tipo de inmueble");
+                    int tipo = Entrada.leerEntero();
+                    miInmobiliaria.busqueda_objetos(tipo);
+                }
                 default -> {
                 }
             }

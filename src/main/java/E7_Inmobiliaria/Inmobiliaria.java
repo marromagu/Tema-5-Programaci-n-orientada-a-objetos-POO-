@@ -171,14 +171,13 @@ public class Inmobiliaria {
 
     public void verDatos() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Inmobiliaria{");
-        sb.append("Nombre = ").append(nombre);
-        sb.append(", CIF = ").append(cif);
-        sb.append(", Direccion = ").append(direccion);
-        sb.append(", Propietario = ").append(propietario);
-        sb.append(", Cuenta = ").append(cuenta.getSaldo());
-        sb.append(", Numero Inmuebles = ").append(numeroInmuebles);
-        sb.append('}');
+        sb.append("Inmobiliaria");
+        sb.append("\nNombre = ").append(nombre);
+        sb.append("\nCIF = ").append(cif);
+        sb.append("\nDireccion = ").append(direccion);
+        sb.append("\nPropietario = ").append(propietario);
+        sb.append("\nCuenta = ").append(cuenta.getSaldo());
+        sb.append("\nNumero Inmuebles = ").append(numeroInmuebles);
         System.out.println(sb.toString());
     }
 
@@ -188,4 +187,62 @@ public class Inmobiliaria {
         }
     }
 
+    public void ordena_burbuja() {
+        Inmueble aux;
+        for (int i = 0; i < numeroInmuebles; i++) {
+            for (int j = numeroInmuebles - 1; j > i; j--) {
+                if (inmuebles[j].menorQue(inmuebles[j - 1])) {
+                    System.out.println("Ordenado");
+                    aux = inmuebles[j];
+                    inmuebles[j] = inmuebles[j - 1];
+                    inmuebles[j - 1] = aux;
+                }
+            }
+        }
+    }
+
+    public void busqueda_objetos(int n) {
+
+        switch (n) {
+            case 1:
+                for (int i = 0; i < numeroInmuebles; i++) {
+                    if (inmuebles[i] instanceof Atico) {
+                        inmuebles[i].verDatos();
+                    }
+
+                }
+                break;
+
+            case 2:
+                for (int i = 0; i < numeroInmuebles; i++) {
+                    if (inmuebles[i] instanceof Local) {
+                        inmuebles[i].verDatos();
+                    }
+
+                }
+                break;
+            case 3:
+                for (int i = 0; i < numeroInmuebles; i++) {
+                    if (inmuebles[i] instanceof Vivienda) {
+                        inmuebles[i].verDatos();
+                    }
+
+                }
+                break;
+        }
+
+    }
+
+    public void GenerarObjetos() {
+        Local nuevoLocal = new Local(100, "aqui", 500);
+        altaInmueble(nuevoLocal);
+        Local nuevoLocal2 = new Local(800, "ahi", 69);
+        altaInmueble(nuevoLocal2);
+        Atico nuevoLocal3 = new Atico(2, 5, "noce", 7);
+        altaInmueble(nuevoLocal3);
+        Local nuevoLocal4 = new Local(54, "dfiushdfious", 54);
+        altaInmueble(nuevoLocal4);
+        Vivienda nuevoLocal5 = new Vivienda(5, 2, 1, 2, true, 1000, "en un sitio", 69);
+        altaInmueble(nuevoLocal5);
+    }
 }

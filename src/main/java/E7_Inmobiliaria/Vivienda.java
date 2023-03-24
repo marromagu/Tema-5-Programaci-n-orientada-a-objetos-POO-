@@ -44,15 +44,23 @@ public class Vivienda extends Inmueble {
 
     @Override
     public double comision() {
-        return precioAlquiler()+(super.getPrecio()*1.5);
+        return precioAlquiler() + (super.getPrecio() * 1.5);
     }
-    
-    public void verDatos(){
+
+    public void verDatos() {
         System.out.println("------------");
         System.out.println("| Vivienda |");
         System.out.println("------------");
         super.verDatos();
+        StringBuilder sb = new StringBuilder();
+        sb.append("\nNumero de Habitaciones: ").append(numHabitaciones);
+        sb.append("\nNumero de Baños: ").append(numBaños);
+        sb.append("\nPlazas de Garaje: ").append(plazasGaraje);
+        sb.append("\nPlantas: ").append(planta);
+        sb.append("\nAscensor: ").append(ascensor);
+        System.out.println(sb.toString());
     }
+
     public int getNumHabitaciones() {
         return numHabitaciones;
     }
